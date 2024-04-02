@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Registrasi</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #e3d9d9; /* Warna latar belakang halaman */
+    }
+    .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 100px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #cb0e0e; /* Warna latar belakang container form */
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"],
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .error-message {
+        color: red;
+        margin-top: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="form-container" style="background-image: url('bg.jpeg'); background-size: cover;">
+    <h2>Form Registrasi</h2>
+    <form id="registration-form" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name">
+            <div id="name-error" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <div id="username-error" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <div id="email-error" class="error-message"></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div class="form-group">
+            <label for="phone">No Telepon:</label>
+            <input type="text" id="phone" name="phone">
+        </div>
+        <div class="form-group">
+            <label for="gender">Jenis Kelamin:</label>
+            <select id="gender" name="gender">
+                <option value="male">Laki-laki</option>
+                <option value="female">Perempuan</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="website">Alamat Website:</label>
+            <input type="text" id="website" name="website">
+        </div>
+        <button type="submit">Registrasi</button>
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        var name = document.getElementById('name').value;
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+
+        var nameError = document.getElementById('name-error');
+        var usernameError = document.getElementById('username-error');
+        var emailError = document.getElementById('email-error');
+
+        var isValid = true;
+
+        // Validasi nama
+        if (name.trim() === '') {
+            nameError.textContent = 'Nama harus diisi';
+            isValid = false;
+        } else {
+            nameError.textContent = '';
+        }
+
+        // Validasi username
+        if (username.trim() === '') {
+            usernameError.textContent = 'Username harus diisi';
+            isValid = false;
+        } else {
+            usernameError.textContent = '';
+        }
+
+        // Validasi email
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.match(emailPattern)) {
+            emailError.textContent = 'Email tidak valid';
+            isValid = false;
+        } else {
+            emailError.textContent = '';
+        }
+
+        return isValid;
+    }
+</script>
+
+</body>
+</html>
